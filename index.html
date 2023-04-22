@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-color: #f1faee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+      
+      h1 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 3rem;
+        color: #fff;
+        text-align: center;
+        text-shadow: 2px 2px 0 #457b9d;
+        margin-bottom: 2rem;
+      }
+      
+      button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.5rem;
+        color: #fff;
+        background-color: #457b9d;
+        border: none;
+        padding: 1rem 2rem;
+        margin-right: 1rem;
+        border-radius: 5px;
+        box-shadow: 2px 2px 0 #1d3557;
+        cursor: pointer;
+      }
+      
+      button:hover {
+        background-color: #1d3557;
+      }
+      
+      #result {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2rem;
+        color: #fff;
+        text-align: center;
+        text-shadow: 2px 2px 0 #457b9d;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Rock Paper Scissors Game</h1>
+   <button onclick="alert('Rock beats scissors and water, but loses to paper. \n\nPaper beats rock, but loses to scissors and itself. \n\nScissors beats paper and water, but loses to rock. \n\nWater beats paper, but loses to scissors and itself. \n\nChoose your move wisely!')">Rules</button>
+
+
+    <p>Select your move:</p>
+    <div>
+      <button onclick="play('rock')">Rock</button>
+      <button onclick="play('paper')">Paper</button>
+      <button onclick="play('scissors')">Scissors</button>
+      <button onclick="play('water')">Water</button>
+    </div>
+    <p id="result"></p>
+    
+    <script>
+      function play(playerChoice) {
+        const choices = ['rock', 'paper', 'scissors', 'water'];
+        const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+        
+        if (playerChoice === computerChoice) {
+          document.getElementById('result').innerHTML = "It's a tie!";
+        } else if (
+          (playerChoice === 'rock' && (computerChoice === 'scissors' || computerChoice === 'water')) ||
+          (playerChoice === 'paper' && (computerChoice === 'rock' || computerChoice === 'paper')) ||
+          (playerChoice === 'scissors' && (computerChoice === 'paper' || computerChoice === 'water')) ||
+          (playerChoice === 'water' && (computerChoice === 'paper' || computerChoice === 'water'))
+        ) {
+          document.getElementById('result').innerHTML = "You win!";
+        } else {
+          document.getElementById('result').innerHTML = "You lose!";
+        }
+      }
+    </script>
+  </body>
+</html>
